@@ -9,9 +9,7 @@ class Solution {
         }
         
         for(int num: candies){
-            if(num + extraCandies >= max){
-                list.add(true);
-            } else list.add(false);
+            list.add(num + extraCandies >= max);
         }
         
         return list;
