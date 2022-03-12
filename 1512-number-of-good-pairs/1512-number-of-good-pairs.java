@@ -7,14 +7,14 @@ class Solution {
         
         for(int key: nums){
             if(map.get(key) == null){
-                map.put(key, 0);
+                map.put(key, 1);
             } else {
                 map.put(key, map.get(key) + 1);
             }
         }
         
         for(int value: map.values()){
-            total += (value+1)*(value+1-1)/2;
+            total += (value)*(value-1)/2;
         }
         
         return total;
