@@ -1,7 +1,7 @@
 class Solution {
     public int numJewelsInStones(String jewels, String stones) {
         
-        Set<Character>set = new HashSet<Character>();
+        HashSet<Character>set = new HashSet<Character>();
         for(char jewel: jewels.toCharArray()){
             set.add(jewel);
         }
