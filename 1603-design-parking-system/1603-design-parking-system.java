@@ -4,11 +4,7 @@ class ParkingSystem {
 
     public ParkingSystem(int big, int medium, int small) {
         
-        spaceAvailable = new int[4];
-        spaceAvailable[0] = 0;
-        spaceAvailable[1] = big;
-        spaceAvailable[2] = medium;
-        spaceAvailable[3] = small;
+        spaceAvailable = new int[]{0, big, medium, small};
         
     }
     
