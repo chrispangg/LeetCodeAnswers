@@ -1,21 +1,13 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
-        // for-loop
-        // if nums[i] == nums[i-1]
-        // move all elements by one in position
-        // else we move pointer up 
-        int k = nums.length;
-        int i = 1;
-        while (i < k) {
-            if (nums[i] == nums[i - 1]) {
-                k--;
-                for (int j = i; j <= k; j++) {
-                    nums[j - 1] = nums[j];
-                }
-            } else {
-                i++;
+        if(nums.length == 1) return 1;
+        int pt = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if(nums[i] != nums[i-1]){
+                nums[pt] = nums[i];
+                pt++;
             }
         }
-        return k;
+        return pt;
     }
 }
