@@ -34,3 +34,6 @@ class Solution {
         return result;
     }
 }
+
+//Time Complexity = O(n log n) becauase we are sorting it in a loop
+//Space Complexity = O(n), because we are storing values in an array on each loop
