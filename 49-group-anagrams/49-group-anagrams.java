@@ -3,6 +3,11 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+//create a hashmap<String, List<String>>
+//for-loop: where key is sorted value, and value is added to the String list
+//as we loop, if the key matches one of the keys, we add it to the String list
+//convert hashtable values into an array. Example: ArrayList<String> arr = new ArrayList<Word>(hw.values());
+
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
         HashMap<String, List<String>> map = new HashMap<String, List<String>>();
@@ -29,11 +34,3 @@ class Solution {
         return result;
     }
 }
-
-
-//["eat","tea","tan","ate","nat","bat"]
-
-//create a hashmap<String, List<String>>
-//for-loop: where key is sorted value, and value is added to the String list
-//as we loop, if the key matches one of the keys, we add it to the String list
-//convert hashtable values into an array. Example: ArrayList<String> arr = new ArrayList<Word>(hw.values());
