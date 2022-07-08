@@ -39,6 +39,8 @@ class Solution {
     }
 }
 
+//Time Complexity = O(n), because we were able to loop through without sorting
+
 //Solutioning:
     //Use a hashmap to count the frequency
     //Use a variant of bucket sort:
