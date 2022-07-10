@@ -14,7 +14,7 @@ class Solution:
         l = 0
         r = len(numbers) - 1
         
-        for num in numbers:
+        while r > l:
             if numbers[l] + numbers[r] < target:
                 l += 1
             if numbers[l] + numbers[r] > target:
