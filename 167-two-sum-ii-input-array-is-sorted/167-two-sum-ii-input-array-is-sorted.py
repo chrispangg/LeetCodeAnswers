@@ -17,9 +17,9 @@ class Solution:
         while r > l:
             if numbers[l] + numbers[r] < target:
                 l += 1
-            if numbers[l] + numbers[r] > target:
+            elif numbers[l] + numbers[r] > target:
                 r -= 1
-            if numbers[l] + numbers[r] == target:
+            elif numbers[l] + numbers[r] == target:
                 res.append(l + 1)
                 res.append(r + 1)
                 return res
