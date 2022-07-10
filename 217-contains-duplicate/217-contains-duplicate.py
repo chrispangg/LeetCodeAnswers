@@ -5,10 +5,9 @@
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         res = set()
-        result = False
         for n in nums:
             if n in res:
                 return True
             else:
                 res.add(n)
-        return result
+        return False
