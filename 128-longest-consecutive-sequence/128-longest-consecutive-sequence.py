@@ -3,9 +3,6 @@ class Solution:
         numSet = set(nums)
         longest = 0
         
-        if not nums:
-            return 0
-        
         for n in nums:
             if(n - 1) not in numSet:
                 length = 0
