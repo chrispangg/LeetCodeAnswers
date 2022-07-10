@@ -1,19 +1,21 @@
-# initalise set
+# initalise array res
 # sort nums
 # for num in nums
-    # target = 0
+    # this is not the first input in the input array and nums[i] is equal nums[i-1], then we want to skip this num, because we don't want duplicates
     # two pointers left and right
     # while left < right
-        # check if left + right + num = 0 and r != i and l != i and r != l
-            #if yes, add all three digit as an SORTED array to a set
-        # if sum is smaller than target, move right pointer right
-        # if sum is larger than target, move left pointer left
+        # if threeSum is smaller than target, move right pointer right
+        # if threeSum is larger than target, move left pointer left
+        # else we append all numbers to the array res
+            #to avoid duplicates, we can use a while loop to move forward until they are not equal
+            #or we can convert array res to a set
     # return set as array
 
-    # [-1,0,1,2,-1,-4]
+# Time Complexity = O(n logn n ), because we sorted. But because we have two loops, it is therefore O(n^2)
+# Space Complexity = O(1)
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        res = []
+        res = set()
         nums.sort()
         for i, num in enumerate(nums):
             if i > 0 and num == nums[i - 1]:
@@ -28,10 +30,6 @@ class Solution:
                 elif threeSum > 0:
                     r -= 1
                 else:
-                    res.append([nums[l], nums[r], nums[i]])
-                    # arr.sort()
+                    res.add(tuple([nums[l], nums[r], nums[i]]))
                     l += 1
-                    while nums[l] == nums[l - 1] and l < r:
-                        l += 1
-                    
-        return res
+        return list(res)
