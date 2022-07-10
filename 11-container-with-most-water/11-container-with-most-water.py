@@ -18,8 +18,7 @@ class Solution:
         maxArea, l, r = 0, 0, len(height) - 1
         
         while l < r:
-            area = min(height[l], height[r]) * (r-l)
-            maxArea = max(maxArea, area)
+            maxArea = max(maxArea, min(height[l], height[r]) * (r-l))
             if(height[l] <= height[r]):
                 l += 1
             else: 
