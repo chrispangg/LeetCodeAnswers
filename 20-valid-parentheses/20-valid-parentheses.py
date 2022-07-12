@@ -15,16 +15,14 @@ class Solution:
         for i in range(len(s)):
             if s[i] in p:
                 stack.append(s[i])
-            
-            else:
-                if len(stack) == 0: 
-                    return False
+                continue
                 
-                val = stack.pop()
-                if p[val] != s[i]:
-                    return False
+            if len(stack) == 0:
+                return False
+
+            val = stack.pop()
+            if p[val] != s[i]:
+                return False
         
-        if len(stack) != 0:
-            return False
         
-        return True
+        return not stack
