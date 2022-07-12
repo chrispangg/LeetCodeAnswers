@@ -5,8 +5,6 @@
 
 class Solution:
     def isValid(self, s: str) -> bool:
-        if len(s) == 0 or len(s) == 1 : 
-            return False
         
         p = {"{" : "}", "[" : "]", "(" : ")"}
         
@@ -15,14 +13,11 @@ class Solution:
         for i in range(len(s)):
             if s[i] in p:
                 stack.append(s[i])
-                continue
-                
+                continue   
             if len(stack) == 0:
                 return False
-
             val = stack.pop()
             if p[val] != s[i]:
                 return False
-        
         
         return not stack
