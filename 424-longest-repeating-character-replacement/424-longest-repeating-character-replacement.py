@@ -14,11 +14,8 @@ Space Complexity:
 
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        
+        res,l,maxf = 0,0,0
         charMap = {}
-        res = 0
-        l = 0
-        maxf = 0
         
         for r in range (len(s)):
             charMap[s[r]] = charMap.get(s[r], 0) + 1
@@ -26,19 +23,10 @@ class Solution:
             
             if (r - l + 1) - maxf <= k: #valid window
                 res = r - l + 1
-            
             else: #invalid window
                 charMap[s[l]] = charMap[s[l]] - 1
                 l += 1
         
         return res
-                
-                
-            
-            
-            
-            
-            
-            
             
             
