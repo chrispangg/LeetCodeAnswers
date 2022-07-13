@@ -28,10 +28,7 @@ class Solution:
                 res = r - l + 1
             
             else: #invalid window
-                if charMap[s[l]] == 0:
-                    charMap[s[l]].pop(l)
-                else:
-                    charMap[s[l]] = charMap[s[l]] - 1
+                charMap[s[l]] = charMap[s[l]] - 1
                 l += 1
         
         return res
