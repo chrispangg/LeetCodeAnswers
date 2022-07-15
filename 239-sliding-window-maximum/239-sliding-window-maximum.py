@@ -25,12 +25,11 @@ class Solution:
             queue.append(r)    
             
             #remove left val from window
-            if l > queue[0]:
+            if l - 1 == queue[0]:
                 queue.popleft()
                 
-            if (r+1) >= k:
+            if r + 1 >= k:
                 res.append(nums[queue[0]]) 
                 l += 1
         
         return res
-        
