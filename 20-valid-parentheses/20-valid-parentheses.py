@@ -1,23 +1,27 @@
-# Use a map for the parentheses
-# Use a stack to keep track of what's on top
-# If can't get the given parenthese does not match the value of the map, then return false
-# If map is empty, also return false
-
+"""
+Create a charMap and a stack
+add the key value to stack if str[i] in key i.e. if str[i] == "{", then add "}" to stack
+else, check if the top of stack is equal to str[i] i.e. if str[i] == "}", check if the top of the stack is "}". If it's not, return false
+i.e. {,[,(,),],},}
+"""
 class Solution:
     def isValid(self, s: str) -> bool:
         
-        p = {"{" : "}", "[" : "]", "(" : ")"}
-        
         stack = []
+        charMap = {"{": "}", "(": ")", "[": "]"}
         
-        for i in range(len(s)):
-            if s[i] in p:
-                stack.append(s[i])
-                continue   
-            if len(stack) == 0:
+        for c in s:
+            if c in charMap:
+                stack.append(charMap[c])
+            elif stack:
+                p = stack.pop() 
+                if c != p:
+                    return False
+            else:
                 return False
-            val = stack.pop()
-            if p[val] != s[i]:
-                return False
+                    
         
-        return not stack
+        if len(stack) > 0: 
+            return False
+        
+        return True
