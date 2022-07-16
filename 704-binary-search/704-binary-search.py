@@ -1,11 +1,9 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        
-        l,r = 0, len(nums) - 1
+        l, r = 0, len(nums) - 1
         
         while l <= r:
-            m = l + (r - l)//2
-            
+            m = ((r - l)//2) + l
             if nums[m] < target:
                 l = m + 1
             elif nums[m] > target:
@@ -13,7 +11,3 @@ class Solution:
             else:
                 return m
         return -1
-    
-    
-# [-1,0,3,5,9,12], target = 12
-# 5 
