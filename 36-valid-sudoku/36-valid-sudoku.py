@@ -19,12 +19,8 @@ class Solution:
                     cube = str(board[j][i]) + " in cube " + str(i//3) + "," + str(j//3)
                                 
                     if row in resSet or column in resSet or cube in resSet:
-                        print(row + " " + column + " " + cube)
                         return False
                     else:
-                        print(row + " " + column + " " + cube)
-                        resSet.add(row)
-                        resSet.add(column)
-                        resSet.add(cube)
+                        resSet.update([row, column, cube])
                     
         return True
