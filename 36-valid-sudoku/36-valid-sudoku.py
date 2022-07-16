@@ -11,12 +11,12 @@ Time = O(n), Space = O(n)
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         resSet = set()
-        for j in range (len(board)):
-            for i in range (len(board[j])):
-                if str(board[j][i]) != ".":
-                    row = str(board[j][i]) + " in row " + str(j)
-                    column = str(board[j][i]) + " in column " + str(i)
-                    cube = str(board[j][i]) + " in cube " + str(i//3) + "," + str(j//3)
+        for i, row in enumerate(board):
+            for j, c in enumerate(row):
+                if c != ".":
+                    row = c + " in row " + str(i)
+                    column = c + " in column " + str(j)
+                    cube = c + " in cube " + str(i//3) + "," + str(j//3)
                                 
                     if row in resSet or column in resSet or cube in resSet:
                         return False
