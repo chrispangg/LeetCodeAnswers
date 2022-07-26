@@ -14,13 +14,10 @@ class Solution:
                     r = m - 1
             else: 
                 # If right side is sorted, then nums[m] must be the smallest value on right side
-                
-                
                 if m - 1 >= 0:
-                    if nums[m] > nums[m-1]:
-                        r = m
-                    else:
-                        l = m
+                    r = m
+                else:
+                    l = m
                         
         return nums[m]
             
