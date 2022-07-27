@@ -10,7 +10,5 @@ class Solution:
                 else:
                     return nums[l]
             else: 
-                
-                r = m
-                        
+                r = m      
         return nums[m]
