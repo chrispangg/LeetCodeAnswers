@@ -10,9 +10,7 @@ class Solution:
                 else:
                     return nums[l]
             else: 
-                if m - 1 >= 0:
-                    r = m
-                # else:
-                #     l = m
+                
+                r = m
                         
         return nums[m]
