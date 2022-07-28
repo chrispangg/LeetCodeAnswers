@@ -10,14 +10,9 @@ class Solution:
         
         while queue:
             node = queue.pop()
-            
             if node:
-                temp = node.right
-                node.right = node.left
-                node.left = temp
-                
-                queue.append(node.left)
-                queue.append(node.right)
+                node.left, node.right = node.right,  node.left
+                queue += node.left, node.right
         
         return root
 
@@ -25,5 +20,5 @@ class Solution:
 """
 Solution: BFS, iterative approach
 With BFS, we need to have a queue for storing the nodes
-As we 
+As we traverse
 """
