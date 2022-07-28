@@ -19,6 +19,6 @@ class Solution:
         
 """
 Solution: BFS, iterative approach
-With BFS, we need to have a queue for storing the nodes
-As we traverse
+With BFS, we need to have a queue for storing the nodes as we traverse so we deal with all the nodes in the same level before we deal with nodes in the next devel down.
+All we are doing here is swaping left nodes and right nodes
 """
