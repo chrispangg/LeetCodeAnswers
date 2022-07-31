@@ -5,30 +5,21 @@
 #         self.next = next
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        # find the length of the list
-        length = 0
-        currNode = head
-        while currNode.next:
-            length += 1
-            currNode = currNode.next
-            
-        currNode = head
+        dummy = ListNode(0, head)
+        left = dummy
+        right = head
         
-        print(str(length))
-        pos = length - n
-        print(str(pos))
+        # Shift fast pointer forward to the correct position
+        while n > 0 and right:
+            right = right.next
+            n -= 1
         
-        #edge case when pos is 0
-        if pos == -1:
-            return head.next
-        else:
-        # loop forward to remove node
-            for i in range(length):
-                if i == pos:
-                    tbrNode = currNode.next
-                    currNode.next = currNode.next.next                
-                    break;
-
-                currNode = currNode.next
+        # Shift both pointers until the fast pointer reaches the end
+        while right:
+            left = left.next
+            right = right.next
         
-        return head
+        # Delete
+        left.next = left.next.next
+        
+        return dummy.next
