@@ -17,6 +17,6 @@ class Solution:
                 
             curr = curr.next
             
-        curr.next = list1 if list2 is None else list2
+        curr.next = list1 if list1 else list2
         
         return dummy.next
