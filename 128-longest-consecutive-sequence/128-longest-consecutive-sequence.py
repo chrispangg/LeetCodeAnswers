@@ -11,9 +11,7 @@ class Solution:
         nSet = set(nums)
         
         for n in nums:
-            if n-1 in nSet:
-                continue
-            else:
+            if n-1 not in nSet:
                 temp = 0
                 while n + temp in nSet:
                     temp += 1
