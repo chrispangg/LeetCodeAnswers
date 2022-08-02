@@ -1,6 +1,7 @@
 """
 Sliding Window + set
-add value to set if not repeated, if repeated, remove the left most char
+if not repeated add value to set
+if repeated, remove the left most char until it's not no longer repeated
 track largest size as we cycle
 return res
 """
@@ -14,9 +15,8 @@ class Solution:
             while s[r] in chars:
                 chars.remove(s[l])
                 l += 1
-                
-            else:
-                chars.add(s[r])
-                res = max(res, len(chars))
+
+            chars.add(s[r])
+            res = max(res, len(chars))
                 
         return res
