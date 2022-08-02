@@ -1,35 +1,34 @@
-# initalise array res
-# sort nums
-# for num in nums
-    # this is not the first input in the input array and nums[i] is equal nums[i-1], then we want to skip this num, because we don't want duplicates
-    # two pointers left and right
-    # while left < right
-        # if threeSum is smaller than target, move right pointer right
-        # if threeSum is larger than target, move left pointer left
-        # else we append all numbers to the array res
-            #to avoid duplicates, we can use a while loop to move forward until they are not equal
-            #or we can convert array res to a set
-    # return set as array
+"""
+num[i] starts at where the left pointer is at and increment when all three numbers = 0
+left right pointers - starting from left and right, where left = i + 1 and right = len(num) - 1
+increment left pointer if it's less than 0
+decrement right pointer if it's more than 0
+save them in a set to avoid duplicates
+end the loop when l<r is not valid
 
-# Time Complexity = O(n logn n ), because we sorted. But because we have two loops, it is therefore O(n^2)
-# Space Complexity = O(1)
+"""
+
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        res = set()
         nums.sort()
+        res = set()
+        
         for i, num in enumerate(nums):
-            if i > 0 and num == nums[i - 1]:
-                continue
-            l = i + 1
-            r = len(nums) - 1
-
+            l,r = i+1, len(nums)-1
+            
+            if l == r:
+                break
+            
             while l < r:
-                threeSum = nums[l] + nums[r] + nums[i]
+                threeSum = num + nums[l] + nums[r]
                 if threeSum < 0:
                     l += 1
                 elif threeSum > 0:
                     r -= 1
                 else:
-                    res.add(tuple([nums[l], nums[r], nums[i]]))
+                    res.add(tuple([num, nums[l], nums[r]]))
                     l += 1
+            
+            
+            
         return list(res)
