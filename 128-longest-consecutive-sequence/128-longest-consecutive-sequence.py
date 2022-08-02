@@ -14,10 +14,9 @@ class Solution:
             if n-1 in nSet:
                 continue
             else:
-                curr, temp = n, 0
-                while curr in nSet:
+                temp = 0
+                while n + temp in nSet:
                     temp += 1
                     res = max(res, temp)
-                    curr += 1
                     
         return res
