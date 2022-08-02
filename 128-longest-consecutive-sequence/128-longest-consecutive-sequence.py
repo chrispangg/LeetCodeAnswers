@@ -7,6 +7,8 @@ if set does not contain n-1, we can increment forward, and remove() n-1 from set
 
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
         res = 0
         nSet = set(nums)
         
