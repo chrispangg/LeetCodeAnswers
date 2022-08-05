@@ -21,8 +21,7 @@ class Solution:
             return 1 + max(left, right)
         
         dfs(root)
-        print(res[0])
-        if res[0] > 1 or res[0] < -1:
+        if res[0] > 1:
             return False            
         
         return True
