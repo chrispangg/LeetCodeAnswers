@@ -13,20 +13,16 @@ class TimeMap:
         values = self.keyStore.get(key, []) #use .get to get empty array if empty
         
         # Binary Search
-        l,r = 0, len(values)
-        while l < r:
-            m = (l + r) // 2            
-            if timestamp > values[m][1]:
+        l,r = 0, len(values) - 1
+        while l <= r:
+            m = (l + r)//2
+            if values[m][1] <= timestamp:
+                res = values[m][0]
                 l = m + 1
-            elif timestamp < values[m][1]:
-                r = m
             else:
-                return values[m][0]
+                r = m - 1
         
-        if not values or values[m][1] > timestamp:
-            return ""
-        else:
-            return values[m][0]
+        return res
 
 
 # Your TimeMap object will be instantiated and called as such:
