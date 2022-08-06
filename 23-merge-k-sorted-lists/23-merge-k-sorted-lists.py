@@ -9,23 +9,28 @@ Merge Sort
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         
-        if not lists:
-            return
-        elif len(lists) <= 1:
+        if not lists or len(lists) == 0:
+            return None
+        elif len(lists) == 1:
             return lists[0]
         
-        curNode = dummy = ListNode(float('-inf'))
-        
-        for i in range(len(lists)):
-            curNode = self.merge(curNode, lists[i])
+        while len(lists) > 1:
+            mergedLists = []
             
-        return dummy.next
+            # increment by 2 as we are merging 2 lists
+            for i in range(0, len(lists), 2):
+                l1 = lists[i]
+                l2 = lists[i+1] if (i + 1) < len(lists) else None
+                mergedLists.append(self.merge(l1, l2))
+                
+            lists = mergedLists
+                
+        return lists[0]
     
     def merge(self, left, right):
         curNode = dummy = ListNode(float('-inf'))
         
-        while left and right:
-            
+        while left and right:    
             if left.val > right.val:
                 curNode.next = right
                 right = right.next
@@ -34,10 +39,7 @@ class Solution:
                 left = left.next
                 
             curNode = curNode.next
-        
-        
         curNode.next = left if left else right
-        
         return dummy.next
                 
     
