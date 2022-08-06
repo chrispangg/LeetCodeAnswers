@@ -11,8 +11,6 @@ class Solution:
         
         if not lists or len(lists) == 0:
             return None
-        elif len(lists) == 1:
-            return lists[0]
         
         while len(lists) > 1:
             mergedLists = []
