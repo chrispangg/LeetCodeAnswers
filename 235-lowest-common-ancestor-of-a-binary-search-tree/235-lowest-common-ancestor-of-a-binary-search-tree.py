@@ -6,13 +6,10 @@
 #         self.right = None
 
 """
-return False if root.left and root.right are both null
-return True if:
-
-root.val is p or q AND root.left.val is p or q AND root.right.val is q or p
-
+Traverse the nodes. Go right if both p and q are smaller than the root. 
+Go left if both p and q are larger than the root. 
+Return root when that’s not the case.
 """
-
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         while root:
