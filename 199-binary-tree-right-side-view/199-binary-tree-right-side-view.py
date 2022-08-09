@@ -12,15 +12,14 @@ class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         if not root:
             return []
-        res = [root.val]
-        stack= [root] if root else []
+        
+        res, stack = [root.val], [root]
         
         while stack:
             queue = []
             for node in stack:
                 queue.append(node.left) if node.left else None
                 queue.append(node.right) if node.right else None
-            
             
             value = queue[len(queue)-1].val if len(queue) - 1 >= 0 else None
             
@@ -29,6 +28,5 @@ class Solution:
             
             stack = queue
             
-        print(res)
         return res
     
