@@ -10,10 +10,7 @@ class Solution:
             if not node:
                 return 0
             newMax = max(node.val, maxVal)
-            if newMax == node.val:
-                return 1 + dfs(node.left, newMax) + dfs(node.right, newMax)
-            else:
-                return 0 + dfs(node.left, newMax) + dfs(node.right, newMax)
+            plus = 1 if newMax == node.val else 0
+            return plus + dfs(node.left, newMax) + dfs(node.right, newMax)
             
         return dfs(root, root.val)
-            
