@@ -9,8 +9,6 @@ class Trie:
     def __init__(self):
         self.root = TrieNode()
 
-        
-
     # If node doesn't contain the character, we add it to our map
     # Then we move to the node
     def insert(self, word: str) -> None:
@@ -26,19 +24,15 @@ class Trie:
         for c in word:
             if c not in curr.children:
                 return False
-            else:
-                curr = curr.children[c]
-        if not curr.end:
-            return False
-        return True
+            curr = curr.children[c]
+        return curr.end
         
     def startsWith(self, prefix: str) -> bool:
         curr = self.root
         for c in prefix:
             if c not in curr.children:
                 return False
-            else:
-                curr = curr.children[c]
+            curr = curr.children[c]
         return True
 
 
