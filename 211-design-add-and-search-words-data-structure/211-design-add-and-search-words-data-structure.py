@@ -1,34 +1,36 @@
 class TrieNode:
     def __init__(self):
-        self.children = {}
-        self.end = False #char:node
+        self.children = {}  # a : TrieNode
+        self.word = False
+
 
 class WordDictionary:
-
     def __init__(self):
         self.root = TrieNode()
 
     def addWord(self, word: str) -> None:
-        curr = self.root
+        cur = self.root
         for c in word:
-            if c not in curr.children:
-                curr.children[c] = TrieNode()
-            curr = curr.children[c]
-        curr.end = True
+            if c not in cur.children:
+                cur.children[c] = TrieNode()
+            cur = cur.children[c]
+        cur.word = True
 
     def search(self, word: str) -> bool:
-        def dfs(node, substring):
-            for i, c in enumerate(substring):
-                # need to recursively call on every node in charcter map
+        def dfs(j, root):
+            cur = root
+
+            for i in range(j, len(word)):
+                c = word[i]
                 if c == ".":
-                    for node in node.children.values():
-                        if dfs(node, substring[i+1:]):
+                    for child in cur.children.values():
+                        if dfs(i + 1, child):
                             return True
                     return False
                 else:
-                    if c not in node.children:
+                    if c not in cur.children:
                         return False
-                    node = node.children[c]
-            return node.end
-        
-        return dfs(self.root, word)
+                    cur = cur.children[c]
+            return cur.word
+
+        return dfs(0, self.root)
