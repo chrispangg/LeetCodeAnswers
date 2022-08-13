@@ -4,12 +4,7 @@ class Solution:
         
         for s in strs:
             sortedStr = "".join(sorted(s))
-            if sortedStr in strMap:
-                strMap[sortedStr].append(s)
-            else:
-                strMap[sortedStr] = [s]
-        
+            strMap[sortedStr] = strMap.get(sortedStr, []) + [s]
+
         return strMap.values()
         
-                
-            
