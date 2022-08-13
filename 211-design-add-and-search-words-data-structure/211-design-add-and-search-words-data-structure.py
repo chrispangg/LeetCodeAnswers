@@ -3,7 +3,6 @@ class TrieNode:
         self.children = {}
         self.end = False #char:node
 
-
 class WordDictionary:
 
     def __init__(self):
@@ -32,11 +31,4 @@ class WordDictionary:
                     node = node.children[c]
             return node.end
         
-        
         return dfs(self.root, word)
-        
-
-# Your WordDictionary object will be instantiated and called as such:
-# obj = WordDictionary()
-# obj.addWord(word)
-# param_2 = obj.search(word)
