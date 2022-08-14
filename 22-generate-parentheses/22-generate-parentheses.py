@@ -1,37 +1,29 @@
 """
-Use backtracking because we want multiple solutions
-Bounding conditions:
-    - number of opens must equal to closes
-    - open must be before closes
-Therefore:
-    - only add open paranthesis if open < n
-    - only add a closing paranthesis if open > closed
-    - valid IIF open == closed == n
+Backtracking - traverse for all solutions
+["((()))","(()())","(())()","()(())","()()()"]
 """
+
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        stack = []
         res = []
-        
-        def backtrack(openN, closedN):
-            if openN == closedN == n:
-                print(str(stack))
-                res.append("".join(stack))
+        temp = []
+        def backtrack(openN, closeN, n):
+            if openN == closeN == n:
+                group = "".join(temp)
+                print(group)
+                res.append(group)
                 return
             
-            if openN < n:
-                stack.append("(")
-                backtrack(openN + 1, closedN)
-                #we pop it afterwards because the stack is reused after we added to res, so we have to clean it up for the next combo.
-                stack.pop() 
-                
-                
-            if closedN < openN:
-                stack.append(")")
-                backtrack(openN, closedN + 1)
-                stack.pop()
+            if openN < n and openN >= closeN:
+                temp.append("(")
+                backtrack(openN + 1, closeN, n)
+                temp.pop()
+            
+            if closeN < n and openN >= closeN:
+                temp.append(")")
+                backtrack(openN, closeN + 1, n)
+                temp.pop()
             
             
-
-        backtrack(0,0)
-        return res
+        backtrack(0,0,n)
+        return res    
