@@ -8,10 +8,8 @@ class Solution:
         stack = []
         for p, s in sorted(pairs)[::-1]:
             time = (target - p) / s
-            if len(stack) < 1:
-                stack.append(time)
                 
-            elif len(stack) >= 1 and time > stack[-1]:
+            if len(stack) < 1 or len(stack) >= 1 and time > stack[-1]:
                 stack.append(time)
                 
         return len(stack)
