@@ -3,32 +3,43 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+"""
+Find mid point, then reverse everything from mid point to the end
+merge two list back together
+[1,2,3,4,5,6] -> [1,6,2,5,3,4]
+1,2,3
+"""
 class Solution:
     def reorderList(self, head: Optional[ListNode]) -> None:
-        # use slow fast pointers to find middle
-        slow, fast = head, head.next
+        
+        # find mid
+        slow, fast = head, head
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
         
-        # split the list and make the last node of the first list points to null
-        second = slow.next
+        # reverse from slow to end
+        curr = slow.next
         prev = slow.next = None
+        while curr:
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+
+        # merge two lists together
+        list1 = head
+        list2 = prev
+        while list1 and list2:
+            temp = list1.next
+            temp2 = list2.next
+            list1.next = list2
+            list2.next = temp
+            list1,list2 = temp, temp2
+    
+        return head
         
-        # reverse the second list
-        while second:
-            temp = second.next
-            second.next = prev
-            prev = second
-            second = temp
-        
-        # merge two halfs
-        first, second = head, prev
-        while second: #use second becuase it may be a shorter list
-            temp1, temp2 = first.next, second.next 
-            first.next = second
-            second.next = temp1
-            first = temp1
-            second = temp2
-             
+
+            
+            
         
