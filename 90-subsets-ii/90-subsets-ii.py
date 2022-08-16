@@ -11,7 +11,7 @@ class Solution:
         def backtrack(i):
             #base case:            
             if i >= len(nums):
-                subsetCopy = subset.copy()
+                subsetCopy = subset[:]
                 subsetCopy.sort()
                 res.add(tuple(subsetCopy))
                 return
