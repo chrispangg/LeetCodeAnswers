@@ -1,13 +1,15 @@
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
         res = set()
         subset = []
         
         def backtrack(i):
             #base case:            
             if i == len(nums):
-                res.add(tuple(sorted(subset[:])))
+                res.add(tuple(subset.copy()))
                 return
+            
             #to include nums[i]
             subset.append(nums[i])
             backtrack(i + 1)
