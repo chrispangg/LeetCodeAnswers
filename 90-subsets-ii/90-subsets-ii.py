@@ -1,26 +1,21 @@
-"""
-
-
-
-"""
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        res = set()
-        subset = []
-        
-        def backtrack(i):
-            #base case:            
-            if i >= len(nums):
-                subsetCopy = subset[:]
-                subsetCopy.sort()
-                res.add(tuple(subsetCopy))
+        res = []
+        nums.sort()
+
+        def backtrack(i, subset):
+            if i == len(nums):
+                res.append(subset[::])
                 return
-            #to include nums[i]
-            subset.append(nums[i]) 
-            backtrack(i + 1)
-            
+
+            # All subsets that include nums[i]
+            subset.append(nums[i])
+            backtrack(i + 1, subset)
             subset.pop()
-            backtrack(i + 1)
-        
-        backtrack(0)
+            # All subsets that don't include nums[i]
+            while i + 1 < len(nums) and nums[i] == nums[i + 1]:
+                i += 1
+            backtrack(i + 1, subset)
+
+        backtrack(0, [])
         return res
