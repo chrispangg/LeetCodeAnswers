@@ -6,7 +6,7 @@ class Solution:
         def backtrack(i):
             #base case:            
             if i == len(nums):
-                res.add(tuple(sorted(subset.copy())))
+                res.add(tuple(sorted(subset[:])))
                 return
             #to include nums[i]
             subset.append(nums[i])
