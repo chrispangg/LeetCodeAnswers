@@ -5,6 +5,7 @@ class Solution:
         subset = []
         
         def backtrack(i):
+						# base case
             if sum(subset) == target and subset not in res:
                 res.append(subset.copy())
                 return
@@ -15,6 +16,7 @@ class Solution:
             backtrack(i + 1)
             
             subset.pop()
+            
             if not subset or subset[-1] != candidates[i]:
                 backtrack(i + 1)
             
