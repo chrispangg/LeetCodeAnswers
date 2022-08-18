@@ -8,9 +8,8 @@ class Solution:
             # success base case
             if sum(subset) == target:
                 res.append(subset[:])
-                return
             # failed base case
-            if i >= len(candidates) or sum(subset) > target:
+            if i >= len(candidates) or sum(subset) >= target:
                 return
             
             subset.append(candidates[i])
