@@ -5,10 +5,11 @@ class Solution:
         subset = []
         
         def backtrack(i):
-            # base case
-            if sum(subset) == target and subset not in res:
-                res.append(subset.copy())
+            # success base case
+            if sum(subset) == target:
+                res.append(subset[:])
                 return
+            # failed base case
             if i >= len(candidates) or sum(subset) > target:
                 return
             
