@@ -1,53 +1,35 @@
-#input = 2 #output = [1,3,0,2], [2,0,3,1]
-
 class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
-        res = []
-        subset = []
+        col = set()
+        posDiag = set() # row + col
+        negDiag = set() # row - col
         
-        def backtrack(r):
-            if len(subset) == n:
-                subsetStr = subset_to_string()
-                res.append(subsetStr)
+        res = []
+        board = [["."] * n for i in range(n)]
+        
+        def backtrack(r): #perform row by row
+            if r == n:
+                copy = ["".join(row) for row in board]
+                res.append(copy)
                 return
             
-            for c in getCandidates():
-                subset.append(c)
-                backtrack(c)
-                subset.pop()
-        
-        def getCandidates():
-            position = len(subset)
-            # candidates are the potential column it can be in
-            candidates = set(range(n))
-
-            for row, col in enumerate(subset):
-                # discard candidates if it's in the same column
-                candidates.discard(col)
-                dist = position - row
-                # discard diagonals
-                candidates.discard(col + dist)
-                candidates.discard(col - dist)
-
-            return candidates
-        
-        def subset_to_string():
-            # ex. [1, 3, 0, 2]
-            # output: [".Q..","...Q","Q...","..Q."]
-            ret = []
-            for i in subset.copy():
-                string = '.' * i + 'Q' + '.' * (n - i - 1)
-                ret.append(string)
-            return ret
+            for c in range(n):
+                if c in col or (r + c) in posDiag or (r - c) in negDiag:
+                    continue
+                
+                # Add to board
+                col.add(c)
+                posDiag.add(r + c)
+                negDiag.add(r - c)
+                board[r][c] = "Q"
+                
+                backtrack(r + 1)
+                
+                # Clean Up
+                col.remove(c)
+                posDiag.remove(r + c)
+                negDiag.remove(r - c)
+                board[r][c] = "."
         
         backtrack(0)
         return res
-    
-    
-                    
-    
-        
-    
-            
-            
-            
