@@ -1,8 +1,9 @@
 class KthLargest:
 
     def __init__(self, k: int, nums: List[int]):
-        heapq.heapify(nums)
+        # minheap with K largest integers
         self.minheap = nums
+        heapq.heapify(self.minheap)
         self.k = k
         while len(self.minheap) > self.k:
             heapq.heappop(self.minheap)
