@@ -14,6 +14,14 @@ class TrieNode:
             cur.refs += 1
         cur.isWord = True
 
+    def removeWord(self, word):
+        cur = self
+        cur.refs -= 1
+        for c in word:
+            if c in cur.children:
+                cur = cur.children[c]
+                cur.refs -= 1
+
 
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
@@ -32,6 +40,7 @@ class Solution:
                 or c == COLS
                 or (r, c) in visit
                 or board[r][c] not in node.children
+                or node.children[board[r][c]].refs < 1
             ):
                 return
 
@@ -41,7 +50,8 @@ class Solution:
             if node.isWord:
                 node.isWord = False
                 res.add(word)
-            
+                root.removeWord(word)
+
             dfs(r + 1, c, node, word)
             dfs(r - 1, c, node, word)
             dfs(r, c + 1, node, word)
