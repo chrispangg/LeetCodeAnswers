@@ -4,13 +4,12 @@ distance from [0,0] = abs(x) + abs(y)
 use map, where key = distance, value = coordinates
 distance = sqrt(x^2 + y^2)
 """
-
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
         distances = []
-        for point in points:
-            distance = math.sqrt(point[0]**2 + point[1]**2)
-            distances.append([distance, point[0], point[1]])
+        for x, y in points:
+            distance = sqrt(x **2 + y **2)
+            distances.append([distance, x, y])
         
         heapq.heapify(distances)
         
@@ -20,6 +19,3 @@ class Solution:
             res.append([x, y])
         
         return res
-        
-        
-        
