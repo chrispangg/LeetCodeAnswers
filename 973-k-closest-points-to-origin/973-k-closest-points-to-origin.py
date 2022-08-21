@@ -7,15 +7,12 @@ distance = sqrt(x^2 + y^2)
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
         distances = []
-        for x, y in points:
-            distance = x **2 + y **2
-            distances.append([distance, x, y])
-        
         heapq.heapify(distances)
+        for x, y in points:
+            distance = -(x**2 + y**2)
+            if len(distances) == k:
+                heapq.heappushpop(distances, [distance, x, y])
+            else:
+                heapq.heappush(distances, [distance, x, y])
         
-        res = []
-        for i in range(k):
-            distance, x, y = heapq.heappop(distances)
-            res.append([x, y])
-        
-        return res
+        return [[x,y] for dist,x, y in distances]
