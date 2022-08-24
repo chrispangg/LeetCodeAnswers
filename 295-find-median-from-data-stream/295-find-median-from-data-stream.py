@@ -15,7 +15,7 @@ class MedianFinder:
             i = len(self.arr) // 2
             copy = self.arr.copy()
             copy.sort()
-            return (copy[:i][-1] + copy[i:][0]) / 2
+            return (copy[i - 1] + copy[i]) / 2
             
 # Your MedianFinder object will be instantiated and called as such:
 # obj = MedianFinder()
