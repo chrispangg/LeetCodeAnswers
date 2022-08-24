@@ -7,15 +7,13 @@ class MedianFinder:
         self.arr.append(num)
 
     def findMedian(self) -> float:
+        i = len(self.arr) // 2
         if len(self.arr) % 2 == 1:
-            i = len(self.arr) // 2
             self.arr.sort()
             return self.arr[i]
         else: # len(self.arr) % 2 == 0
-            i = len(self.arr) // 2
-            copy = self.arr.copy()
-            copy.sort()
-            return (copy[i - 1] + copy[i]) / 2
+            self.arr.sort()
+            return (self.arr[i - 1] + self.arr[i]) / 2
             
 # Your MedianFinder object will be instantiated and called as such:
 # obj = MedianFinder()
