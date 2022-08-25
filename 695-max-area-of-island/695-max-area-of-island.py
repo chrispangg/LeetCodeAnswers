@@ -16,5 +16,6 @@ class Solution:
             
         for r in range(row):
             for c in range(col):
-                maxArea = max(maxArea, dfs(r, c))
+                if grid[r][c] == 1:
+                    maxArea = max(maxArea, dfs(r, c))
         return maxArea
