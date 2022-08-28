@@ -23,13 +23,13 @@ class Solution:
                     capture(r,c)
         
         # 2. Capture the surrounded regions (remaining O -> T)
+        # 3. Uncapture unsurrounded Regions (T -> O)
         for r in range(rows):
             for c in range(cols):
                 if board[r][c] == "O":
                     board[r][c] = "X"
-        
-        # 3. Uncapture unsurrounded Regions (T -> O)
-        for r in range(rows):
-            for c in range(cols):
                 if board[r][c] == "T":
                     board[r][c] = "O"
+        
+        
+                
