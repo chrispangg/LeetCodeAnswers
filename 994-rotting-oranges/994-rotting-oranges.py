@@ -15,10 +15,12 @@ class Solution:
             
             grid[r][c] = mins
             
-            dfs(r + 1, c, mins + 1)
-            dfs(r - 1, c, mins + 1)
-            dfs(r, c + 1, mins + 1)
-            dfs(r, c - 1, mins + 1)
+            mins += 1
+            
+            dfs(r + 1, c, mins)
+            dfs(r - 1, c, mins)
+            dfs(r, c + 1, mins)
+            dfs(r, c - 1, mins)
             
         for r in range(rows):
             for c in range(cols):
