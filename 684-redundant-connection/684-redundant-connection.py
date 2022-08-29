@@ -1,30 +1,41 @@
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
-        graph = defaultdict(list)
-        n = len(edges)
-        visit = set()
+        par = [i for i in range(len(edges) + 1)]
+        rank = [1] * (len(edges) + 1)
         
-        def dfs(u,v):
-            if u in visit:
+        # given node n, find the root parent
+        def find(n):
+            p = par[n]
+            
+            # find root parent
+            while p != par[p]:
+                par[p] = par[par[p]] 
+                p = par[p]
+            return p
+        
+        # return False if can't complete
+        def union(n1, n2):
+            p1, p2 = find(n1), find(n2)
+            
+            # if same parent return false
+            if p1 == p2:
                 return False
-            if u == v:
-                return True
-            visit.add(u)
             
-            for i in graph[u]:
-                if dfs(i, v):
-                    return True
-            
-            visit.remove(u)
-            
-            return False
+            if rank[p1] > rank[p2]:
+                par[p2] = p1
+                rank[p1] += rank[p2]
+            else:
+                par[p1] = p2
+                rank[p2] += rank[p1]
+            return True
         
-        res = []
-        for u, v in edges:
-            if dfs(u, v):
-                res.append([u, v])
+        for n1, n2 in edges:
+            if not union(n1, n2):
+                return [n1, n2]
+        
+        
+        
+                
+                
             
-            graph[u].append(v)
-            graph[v].append(u)
-            
-        return res[-1] #return the latest
+        
