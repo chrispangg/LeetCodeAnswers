@@ -2,7 +2,6 @@ class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         preMap = {i:[] for i in range(numCourses)}
         for c, p in prerequisites:
-            preMap[c] = preMap.get(c, [])
             preMap[c].append(p)
         
         visit, cycle = set(), set()
@@ -10,6 +9,7 @@ class Solution:
         def dfs(c):
             if c in cycle: return False
             if c in visit: return True
+            
             cycle.add(c)
             
             for p in preMap[c]:
