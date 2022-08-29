@@ -1,36 +1,33 @@
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
-        if not grid or len(grid) == 0: return -1
-
         rows, cols = len(grid), len(grid[0])
-        res = 0
+        q = collections.deque()
+        fresh = 0
+        time = 0
         
-        def dfs(r, c, mins):
-            # base case
-            if (r < 0 or c < 0 or
-                r >= rows or c >= cols or
-                grid[r][c] == 0 or 
-                1 < grid[r][c] < mins):
-                return 0
-            
-            grid[r][c] = mins
-            
-            mins += 1
-            
-            dfs(r + 1, c, mins)
-            dfs(r - 1, c, mins)
-            dfs(r, c + 1, mins)
-            dfs(r, c - 1, mins)
-            
         for r in range(rows):
             for c in range(cols):
+                if grid[r][c] == 1:
+                    fresh += 1
                 if grid[r][c] == 2:
-                    dfs(r, c, 2)
-
-        res = 2
-        for r in range(rows):
-            for c in range(cols):
-                if grid[r][c] == 1: return -1
-                res = max(res, grid[r][c])
+                    q.append((r,c))
         
-        return res - 2
+        directions = [[1, 0], [-1,0], [0,1], [0,-1]]
+        while q and fresh > 0:
+            for i in range(len(q)):
+                row, col = q.popleft()
+
+                for dr, dc in directions:
+                    r, c = row + dr, col + dc
+                    if ((r) in range(rows) and
+                        (c) in range(cols) and
+                        grid[r][c] == 1):
+                        grid[r][c] = 2
+                        q.append((r, c))
+                        fresh -= 1
+            time += 1
+        
+        return time if fresh == 0 else -1
+                    
+
+        
