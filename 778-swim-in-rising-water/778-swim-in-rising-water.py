@@ -1,36 +1,24 @@
 class Solution:
     def swimInWater(self, grid: List[List[int]]) -> int:
-        # 1. create adjacency list, node:[neighbour nodes]
-        adj = defaultdict(list)
-        rows, cols = len(grid), len(grid[0])
-        for r in range(rows):
-            for c in range(cols):
-                node = grid[r][c]                   
-                if c + 1 < cols: adj[node].append(grid[r][c + 1])
-                if c - 1 >= 0: adj[node].append(grid[r][c - 1])
-                if r + 1 < rows: adj[node].append(grid[r + 1][c])
-                if r - 1 >= 0: adj[node].append(grid[r - 1][c]) 
-        print(adj)
+        N = len(grid)
+        visit = set()
+        minH = [[grid[0][0], 0, 0]] # time/max-height, r, c
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
         
-        # 2. Perform Dijkstra's Algorithm
-        start = grid[0][0]
-        target = grid[rows - 1][cols - 1]
-        visited = set()
-        minHeap = [[start, start]]
-        
-        while minHeap:
-            totalcost, node = heapq.heappop(minHeap)
-                
-            if node == target: 
-                return totalcost
+        visit.add((0,0))
+        while minH:
+            t, r, c = heapq.heappop(minH)
+            if r == N - 1 and c == N - 1: #if this is the last grid
+                return t
             
-            if node in visited: continue
+            for dr, dc in directions:
+                neiR, neiC = r + dr, c + dc
+                # check if position is out of bound or visited
+                if (neiR < 0 or neiC < 0 
+                    or neiR == N or neiC == N
+                   or (neiR, neiC) in visit):
+                    continue
+                visit.add((neiR, neiC))
+                heapq.heappush(minH, [max(t, grid[neiR][neiC]), neiR, neiC])
             
-            visited.add(node)
             
-            for nei in adj[node]:
-                if nei > totalcost: 
-                    heapq.heappush(minHeap, [nei, nei])
-                else:
-                    heapq.heappush(minHeap, [totalcost, nei])
-        
