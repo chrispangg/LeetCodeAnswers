@@ -13,9 +13,11 @@ class Solution:
         print(adj)
         
         # 2. Perform Dijkstra's Algorithm
-        visited = set()
-        minHeap = [[grid[0][0], grid[0][0]]]
+        start = grid[0][0]
         target = grid[rows - 1][cols - 1]
+        visited = set()
+        minHeap = [[start, start]]
+        
         while minHeap:
             totalcost, node = heapq.heappop(minHeap)
                 
