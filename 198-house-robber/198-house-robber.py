@@ -1,10 +1,10 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        rob, notRob = 0, 0
+        cache = {}
+        def helper(i):
+            if i >= len(nums): return 0
+            if i in cache: return cache[i]
+            cache[i] = max(nums[i] + helper(i + 2), helper(i + 1))
+            return cache[i]
         
-        for n in nums:
-            temp = max(rob + n, notRob)
-            rob = notRob
-            notRob = temp
-        
-        return notRob
+        return helper(0)
