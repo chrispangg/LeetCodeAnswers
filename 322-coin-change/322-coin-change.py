@@ -10,9 +10,7 @@ class Solution:
             queue = []
             for a in level:
                 for c in coins:
-                    if a + c in visited: 
-                        continue
-                    if a + c <= amount:
+                    if a + c <= amount and a + c not in visited:
                         queue.append(a+c)
                         visited.add(a+c)
                         
