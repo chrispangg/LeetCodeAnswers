@@ -7,14 +7,15 @@ class Solution:
         def dfs(l):
             if l == n:
                 return True
-            for word in wordDict:
-                r = len(word)
-                while r <= len(s):
-                    if s[l:r] == word and dfs(r):
-                        # print(s[l:r])
-                        return True
-                    r+=1
             
-            return False    
+            r = l+1
+            while r <= len(s):
+                if s[l:r] in wordSet and dfs(r):
+                    # print(s[l:r])
+                    return True
+                r+=1
+            
+            return False
+        
         return dfs(0)
     
