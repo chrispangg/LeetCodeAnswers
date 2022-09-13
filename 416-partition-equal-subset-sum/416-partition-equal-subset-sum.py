@@ -4,7 +4,7 @@ class Solution:
         
         target = sum(nums) / 2
         cache = {0}
-        for n in nums:
+        for n in reversed(nums):
             for c in cache.copy():
                 if n + c == target: return True
                 else: cache.add(n + c)
