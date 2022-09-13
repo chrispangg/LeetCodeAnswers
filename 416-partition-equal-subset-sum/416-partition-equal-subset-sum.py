@@ -6,9 +6,6 @@ class Solution:
         cache = {0}
         for n in nums:
             for c in cache.copy():
-                if n + c == target: 
-                    return True
-                else:
-                    cache.add(n + c)
-                    
+                if n + c == target: return True
+                else: cache.add(n + c)
         return False
