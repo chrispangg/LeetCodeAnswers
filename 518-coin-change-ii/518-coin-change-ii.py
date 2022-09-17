@@ -1,17 +1,11 @@
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
-        cache = {}
+        dp = [[0]* (len(coins) + 1) for i in range(amount + 1)]
+        dp[0] = [1]*(len(coins) + 1)
         
-        def dfs(i, total):
-            if total == amount: return 1
-            if total > amount: return 0
-            if i == len(coins): return 0
-            if (i, total) in cache: return cache[(i, total)]
-            
-            # adding the same coin vs adding the next coin
-            cache[(i, total)] = dfs(i, total + coins[i]) + dfs(i+1, total)
-            
-            return cache[(i, total)]
-        
-        return dfs(0,0)
-            
+        for a in range(1, amount + 1):
+            for i in range(len(coins)-1, -1, -1):
+                dp[a][i] = dp[a][i + 1]
+                if a - coins[i] >= 0:
+                    dp[a][i] += dp[a - coins[i]][i]
+        return dp[amount][0]
