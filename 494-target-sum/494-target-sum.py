@@ -6,7 +6,7 @@ class Solution:
             if i == len(nums):
                 return 1 if total == target else 0
 
-            if (abs(i), total) in cache: 
+            if (i, total) in cache: 
                 return cache[(i, total)]
             
             cache[(i, total)] = dfs(i+1, (total + nums[i])) + dfs(i+1, (total - nums[i]))
