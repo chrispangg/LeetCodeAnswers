@@ -16,6 +16,6 @@ class Solution:
                 return True
             
             dp[(i, j)] = False
-            return False
+            return dp[(i, j)]
             
         return dfs(0, 0)
