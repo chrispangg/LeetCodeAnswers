@@ -17,9 +17,5 @@ class Solution:
                     return False
                 dic[i] -= 1
                 if dic[i] == 0:
-                    # check if the value we want to pop if the min value,
-                    # if not, then we 
-                    if i != minH[0]:
-                        return False
                     heapq.heappop(minH)
         return True
