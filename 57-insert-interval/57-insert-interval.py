@@ -15,13 +15,15 @@ class Solution:
         
         for i, interval in enumerate(intervals):
             if newInterval[1] < interval[0]:
-                res.append(newInterval)
-                return res + intervals[i:]
+                res.append(newInterval) #
+                return res + intervals[i:] #just return it since we have appended this
             elif newInterval[0] > interval[1]:
                 res.append(interval)
             else:
                 print(newInterval ," is overlapping with", interval)
                 newInterval = [min(interval[0], newInterval[0]), max(interval[1], newInterval[1])]
-
+                # not appending because the newInterval could still overlap
+        
+        # need to append as it was never appended. Meaning the new interval never found an interval after it
         res.append(newInterval)
         return res
