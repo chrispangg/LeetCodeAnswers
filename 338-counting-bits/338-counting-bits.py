@@ -4,7 +4,7 @@ class Solution:
         for i in range(n + 1):
             r = 0
             while i:
-                i &= i - 1
-                r += 1
+                r += i % 2
+                i = i >> 1 #bitshift to right by 1
             res.append(r)
         return res
