@@ -6,7 +6,7 @@ class Solution:
         res = x % 10
         x = x // 10
         for i in range(len(str(x))):
-            if res > 2**31//10:
+            if res > 2**31//10 or (res == 2**31//10 and x >= 8):
                 return 0
             res = res * 10 + x % 10
             x = x //10
