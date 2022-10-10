@@ -1,27 +1,24 @@
 class TimeMap:
 
     def __init__(self):
-        self.keyStore = {} #key: [val, timestamp]
+        self.keyStore = {} #key:[time, value]
 
     def set(self, key: str, value: str, timestamp: int) -> None:
-        if key not in self.keyStore:
-            self.keyStore[key] = []
-        self.keyStore[key].append([value, timestamp])
+        self.keyStore[key] = self.keyStore.get(key, [])
+        self.keyStore[key].append(tuple([timestamp, value]))
         
     def get(self, key: str, timestamp: int) -> str:
         res = ""
-        values = self.keyStore.get(key, []) #use .get to get empty array if empty
-        
-        # Binary Search
+        values = self.keyStore.get(key, [])
+
         l,r = 0, len(values) - 1
         while l <= r:
-            m = (l + r)//2
-            if values[m][1] <= timestamp:
-                res = values[m][0]
+            m = (r + l) // 2
+            if values[m][0] <= timestamp:
+                res = values[m][1]
                 l = m + 1
             else:
                 r = m - 1
-        
         return res
 
 
@@ -29,5 +26,3 @@ class TimeMap:
 # obj = TimeMap()
 # obj.set(key,value,timestamp)
 # param_2 = obj.get(key,timestamp)
-
-#10,20,30,40,50 target:31
