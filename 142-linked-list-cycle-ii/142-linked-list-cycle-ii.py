@@ -14,15 +14,11 @@ class Solution:
                 
         slow2 = head
         
-        if slow == slow2: 
-            return slow
-        
-        while True:
+        while slow != slow2:
             slow = slow.next
             slow2 = slow2.next
             
-            if slow == slow2:
-                return slow
+        return slow
         
         
             
