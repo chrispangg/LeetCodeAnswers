@@ -18,8 +18,7 @@ class Solution:
         i = -1
         maxVal = 0
         while slow:
-            print(res[i], " + ", slow.val)
-            res[i] = res[i] + slow.val
+            res[i] += slow.val
             maxVal = max(maxVal, res[i])
             
             i -= 1
