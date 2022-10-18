@@ -12,7 +12,6 @@ class Solution:
             return quicksort(less) + [pivot] + quicksort(greater)
         
         arr = quicksort(nums)
-        print(arr)
         return arr[-k]
             
             
