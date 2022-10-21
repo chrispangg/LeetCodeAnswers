@@ -21,7 +21,7 @@ class Solution:
         res = 0
         for r in range(rows):
             for c in range(cols):
-                if grid[r][c] == '1':
+                if grid[r][c] == '1' and (r, c) not in visited:
                     res += dfs(r, c)
         
         return res
