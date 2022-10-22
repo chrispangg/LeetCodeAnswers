@@ -12,15 +12,11 @@ class Solution:
                 return 0
             
             visited.add((r, c))
-            
-            size = dfs(r + 1, c) + dfs(r - 1, c) + dfs(r, c + 1) + dfs(r, c - 1)
-            
-            return 1 + size
+
+            return 1 + dfs(r + 1, c) + dfs(r - 1, c) + dfs(r, c + 1) + dfs(r, c - 1)
             
         for r in range(rows):
             for c in range(cols):
-                if grid[r][c] == 1:
-                    size = dfs(r, c)
-                    maxSize = max(maxSize, size)
+                    maxSize = max(maxSize, dfs(r, c))
         
         return maxSize
