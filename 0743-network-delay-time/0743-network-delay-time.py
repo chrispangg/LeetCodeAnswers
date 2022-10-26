@@ -9,6 +9,7 @@ class Solution:
         minHeap = [[0, k]]
         
         while minHeap:
+            # always pop the shortest path - O(log n) operation
             cost, node = heappop(minHeap)
             if node in visited: continue
             visited.add(node)
