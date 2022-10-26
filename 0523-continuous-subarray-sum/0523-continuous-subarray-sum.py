@@ -4,14 +4,11 @@ class Solution:
         total = 0
         for i, num in enumerate(nums):
             total += num
-            remainder = total % k
-            if remainder not in dic:
-                dic[remainder] = i
+            r = total % k
+            if r not in dic:
+                dic[r] = i
             
-            elif  i - dic[remainder] > 1:
+            elif i - dic[r] >= 2:
                 return True
 
         return False
-            
-            
-            
