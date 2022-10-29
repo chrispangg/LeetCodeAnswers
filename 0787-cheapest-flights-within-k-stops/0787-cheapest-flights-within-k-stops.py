@@ -8,7 +8,7 @@ class Solution:
             
             for s, d, p in flights: #s=src, d=dst, p=price
                 # infinity represents nodes we can't reach yet so we skip them
-                if prices[s] == float("inf"): continue
+                # if prices[s] == float("inf"): continue
                 
                 # if cost to src + price to dst < curr price to dst, then update
                 if prices[s] + p < tmpPrices[d]:
