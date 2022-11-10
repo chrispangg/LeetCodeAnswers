@@ -3,7 +3,7 @@ class Solution:
         dp = [1] * len(nums)
         
         for i in range(len(nums) -1, -1, -1):
-            temp = 0
+
             for j in range(i+1, len(nums)):
                 if nums[j] > nums[i]:
                     dp[i] = max(dp[i], 1 + dp[j])
