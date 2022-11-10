@@ -1,20 +1,11 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        n = len(s)
-        wordSet = set(wordDict)
+        dp = [False] * (len(s) + 1)
+        dp[len(s)] = True
         
-        @lru_cache(None)
-        def dfs(l):
-            if l == n:
-                return True
+        for i in range(len(s)-1, -1, -1):
             for word in wordDict:
-                r = len(word)
-                while r <= len(s):
-                    if s[l:r] == word and dfs(r):
-                        # print(s[l:r])
-                        return True
-                    r+=1
-            
-            return False    
-        return dfs(0)
-    
+                if i + len(word) <= len(s) and s[i:i+len(word)] == word:
+                    dp[i] = dp[i + len(word)]
+                if dp[i]: break
+        return dp[0]
